@@ -1,13 +1,15 @@
 {
-  "name": "node-js-sample",
+  "name": "xws-to-md5",
   "version": "0.2.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": "A sample Node.js app using Express 4 to translate an xws into a ulid",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "body-parser": "1.9",
+    "md5": "2.2"
   },
   "engines": {
     "node": "4.0.0"
