@@ -2,13 +2,16 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var md5 = require('md5');
 var app = express()
-var cool = require('cool-ascii-faces')
 
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+
 // create application/json parser 
 var jsonParser = bodyParser.json()
+var cool = require('cool-ascii-faces')
 
 //postgres
 var pg = require('pg');
@@ -51,15 +54,14 @@ app.get('/', function(request, response) {
     response.send(cool())
 })
 
-app.get('/db', function (request, response) {
-    console.log(process.env.DATABASE_URL)
+app.get('/view', function (request, response) {
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-        client.query('SELECT * FROM ulid', function(err, result) {
+        client.query('SELECT * FROM ulid ', function(err, result) {
             done();
             if (err)
             { console.error(err); response.send("Error " + err); }
             else
-            { response.render('pages/db', {results: result.rows} ); }
+            { response.render('pages/xws', {results: result.rows} ); }
         });
     });
 });
