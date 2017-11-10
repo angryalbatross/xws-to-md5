@@ -2,12 +2,16 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var md5 = require('md5');
 var app = express()
+var cool = require('cool-ascii-faces')
 
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 
 // create application/json parser 
 var jsonParser = bodyParser.json()
+
+//postgres
+var pg = require('pg');
 
 app.listen(app.get('port'), function() {
   console.log("XWS2 app is running at localhost:" + app.get('port'))
@@ -42,3 +46,22 @@ app.get('/api/v1/:listId', function (req, res) {
 	if (!req.query.listId) return res.sendStatus(400)
 	res.send({ 'id': req.query.listId } )
 })
+
+app.get('/', function(request, response) {
+    response.send(cool())
+})
+
+app.get('/db', function (request, response) {
+    console.log(process.env.DATABASE_URL)
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+        client.query('SELECT * FROM ulid', function(err, result) {
+            done();
+            if (err)
+            { console.error(err); response.send("Error " + err); }
+            else
+            { response.render('pages/db', {results: result.rows} ); }
+        });
+    });
+});
+
+
