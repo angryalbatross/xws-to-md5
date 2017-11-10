@@ -40,6 +40,10 @@ app.post('/api/v1/id', jsonParser, function (req, res) {
       pilotNames = pilotNames + list.pilots[i].name + ',';
     }
 
+    var md5 = md5(pilotNames)
+
+    //check to see if its already in the database
+
 	res.send( { 'id': md5(pilotNames) } )
 })
 

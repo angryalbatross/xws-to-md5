@@ -102,12 +102,20 @@ The service supports to calls: users can POST a json xws document to the service
 
 ## Running Locally
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
-
+1) Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
+2) Make sure you have [Postgres installed](https://devcenter.heroku.com/articles/heroku-postgresql)  and you've exported a DATABASE_URL environment variable as described
+3) Get the repository:
 ```sh
 git clone git@github.com:angryalbatross/xws-to-md5.git # or clone your own fork
 cd xws-to-md5
 npm install
+````
+4) Setup the database model
+```
+node models/database.js
+````
+5) Start the web server:
+```
 npm start
 ```
 
