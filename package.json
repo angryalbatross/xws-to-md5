@@ -13,11 +13,10 @@
     "ejs": "2.5.6",
     "express": "^4.13.3",
     "md5": "2.2",
-    "pg": "6.x",
     "pg-promise": "7.3.1"
   },
   "engines": {
-    "node": "4.0.0"
+    "node": "4.5.0"
   },
   "repository": {
     "type": "git",
