@@ -8,12 +8,12 @@ The service supports to calls: users can POST a json xws document to the service
 
 ### POST with XWS payload
 * **URL**
-  /api/v1/id
+  /api/v1/xws
 * **Method:**
   `POST`
 * **Success Response:**
   * **Code:** 200 <br />
-    **Content:** `{ id : "MD5 Identifier" }`
+    **Content:** `{ status: "success", id : "MD5 Identifier" }`
 * **Error Response:**
   * **Code:** 400 <br />
     **Content:** `{code: 1, error: 'json not found'  }`
@@ -22,7 +22,7 @@ The service supports to calls: users can POST a json xws document to the service
 * **Sample Call:**
 
     curl --request POST \
-      --url http://localhost:5000/api/v1/id \
+      --url http://localhost:5000/api/v1/xws \
       --header 'content-type: application/json' \
       --data '  {
     					"faction": "imperial",
@@ -85,7 +85,7 @@ The service supports to calls: users can POST a json xws document to the service
     None
 ### GET with MD5 identifer
 * **URL**
-  /api/v1/$id
+  /api/v1/id/$id
 * **Method:**
   `GET`
 *  **URL Params** 
@@ -98,7 +98,7 @@ The service supports to calls: users can POST a json xws document to the service
   * **Code:** 400 Identifier not found <br />
     **Content:** `{error: 'Could not find identifier provided'  }`
 * **Sample Call:**
->>http://localhost:5000/api/v1/41e92654aa3426db3fb199f0dff05df1 
+>>http://localhost:5000/api/v1/id/41e92654aa3426db3fb199f0dff05df1 
 
 ## Running Locally
 
